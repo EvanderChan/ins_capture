@@ -1,7 +1,12 @@
+#coding=utf-8
+
 from urllib.request import urlopen
 from bs4 import BeautifulSoup
 from html.parser import HTMLParser
 from urllib.error import HTTPError
+from requests import  request
+
+r = request
 
 def getTilte(url):
   try:
@@ -9,6 +14,7 @@ def getTilte(url):
   except HTTPError as e:
     return None
   try:
+    print(r.status_code)
     bsObj = BeautifulSoup(html.read())
     title = bsObj.body.h1
   except AttributeError as e:
